@@ -1,0 +1,11 @@
+welcome.message: hello
+
+port: 8675
+
+memory:
+  limit: 12G
+
+cf:
+  instance:
+    index: 34
+    addr: 123.sesame.street
