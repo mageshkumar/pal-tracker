@@ -53,11 +53,7 @@ public class TimeEntryController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<TimeEntry> delete(long timeEntryId) {
-        TimeEntry timeEntry = timeEntryRepository.delete(timeEntryId);
-        if(timeEntry != null) {
-            return new ResponseEntity<>(new TimeEntry(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        timeEntryRepository.delete(timeEntryId);
+        return new ResponseEntity<>(new TimeEntry(), HttpStatus.NO_CONTENT);
     }
 }

@@ -5,10 +5,8 @@ import io.pivotal.pal.tracker.dao.TimeEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -33,12 +31,13 @@ public class TimeEntryApiController {
 
     @DeleteMapping(value = "{id:[\\d]+}", produces = "application/json")
     public ResponseEntity<TimeEntry> delete(@PathVariable("id") long timeEntryId) {
-        TimeEntry timeEntry = timeEntryRepository.delete(timeEntryId);
-        if (timeEntry != null) {
-            return new ResponseEntity<>(timeEntry, HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+//        TimeEntry timeEntry = timeEntryRepository.delete(timeEntryId);
+        timeEntryRepository.delete(timeEntryId);
+//        if (timeEntry != null) {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
     }
 
     @PostMapping
@@ -47,7 +46,7 @@ public class TimeEntryApiController {
     }
 
     @GetMapping(value = "{id:[\\d]+}")
-    public ResponseEntity<TimeEntry> readPathVariable(@PathVariable("id")  long timeEntryId) {
+    public ResponseEntity<TimeEntry> readPathVariable(@PathVariable("id") long timeEntryId) {
         TimeEntry timeEntry = timeEntryRepository.find(timeEntryId);
         if (timeEntry != null) {
             return new ResponseEntity<>(timeEntry, HttpStatus.OK);

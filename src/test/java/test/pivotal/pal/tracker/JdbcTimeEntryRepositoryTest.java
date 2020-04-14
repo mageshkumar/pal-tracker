@@ -3,8 +3,8 @@ package test.pivotal.pal.tracker;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import io.pivotal.pal.tracker.JdbcTimeEntryRepository;
-import io.pivotal.pal.tracker.TimeEntry;
-import io.pivotal.pal.tracker.TimeEntryRepository;
+import io.pivotal.pal.tracker.bean.TimeEntry;
+import io.pivotal.pal.tracker.dao.TimeEntryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -44,7 +44,7 @@ public class JdbcTimeEntryRepositoryTest {
         assertThat(foundEntry.get("id")).isEqualTo(entry.getId());
         assertThat(foundEntry.get("project_id")).isEqualTo(123L);
         assertThat(foundEntry.get("user_id")).isEqualTo(321L);
-        assertThat(((Date)foundEntry.get("date")).toLocalDate()).isEqualTo(LocalDate.parse("2017-01-09"));
+        assertThat(((Date) foundEntry.get("date")).toLocalDate()).isEqualTo(LocalDate.parse("2017-01-09"));
         assertThat(foundEntry.get("hours")).isEqualTo(8);
     }
 
@@ -140,7 +140,7 @@ public class JdbcTimeEntryRepositoryTest {
         assertThat(foundEntry.get("id")).isEqualTo(timeEntry.getId());
         assertThat(foundEntry.get("project_id")).isEqualTo(456L);
         assertThat(foundEntry.get("user_id")).isEqualTo(322L);
-        assertThat(((Date)foundEntry.get("date")).toLocalDate()).isEqualTo(LocalDate.parse("2017-01-10"));
+        assertThat(((Date) foundEntry.get("date")).toLocalDate()).isEqualTo(LocalDate.parse("2017-01-10"));
         assertThat(foundEntry.get("hours")).isEqualTo(10);
     }
 

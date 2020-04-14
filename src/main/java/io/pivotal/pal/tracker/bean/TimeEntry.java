@@ -3,21 +3,35 @@ package io.pivotal.pal.tracker.bean;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TimeEntry {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long projectId;
     private Long userId;
+    private LocalDate date;
+    private int hours;
 
-    public void setId(long id) {
+    public TimeEntry(long projectId, long userId, LocalDate date, int hours) {
+        this.projectId = projectId;
+        this.userId = userId;
+        this.date = date;
+        this.hours = hours;
+    }
+
+    public TimeEntry(long id, long projectId, long userId, LocalDate date, int hours) {
         this.id = id;
+        this.projectId = projectId;
+        this.userId = userId;
+        this.date = date;
+        this.hours = hours;
+    }
+
+    public TimeEntry() {
+        super();
+
     }
 
     public long getProjectId() {
@@ -52,31 +66,12 @@ public class TimeEntry {
         this.hours = hours;
     }
 
-    private LocalDate date;
-    private int hours;
-
-    public TimeEntry(long projectId, long userId, LocalDate date, int hours) {
-        this.projectId = projectId;
-        this.userId = userId;
-        this.date = date;
-        this.hours = hours;
-    }
-
-    public TimeEntry(long id, long projectId, long userId, LocalDate date, int hours) {
-        this.id = id;
-        this.projectId = projectId;
-        this.userId = userId;
-        this.date = date;
-        this.hours = hours;
-    }
-
-    public TimeEntry() {
-        super();
-
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 //    @Override
